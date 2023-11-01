@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Azure DevOps Comments Fetcher</title>
+        <link href="/select2.min.css" rel="stylesheet" />
+        <style>
+            .repo-list {
+                max-height: 200px;
+                overflow-y: scroll;
+                border: 1px solid #ccc;
+            }
+        </style>
+    </head>
+    <body>
+        <div id="organization-details-container" style="display: none;">
+            <h2>Set Azure DevOps Organization Details</h2>
+            <div><input id="organization" name="organization" placeholder="Organization Name"/></div>
+            <div><input id="pat" name="pat" placeholder="Personal Access Token" /></div>
+            <button id="setOrgDetails">Save Details</button>
+        </div>
+        <div id="fetch-comments-container">
+            <h2>Fetch Comments</h2>
+            <select id="projectDropdown">
+                <option value="">Select a project</option>
+            </select>
+            <select id="repositoryDropdown" style="width: 100%;">
+                <!-- Options will be populated dynamically -->
+            </select>
+            <select id="timelineDropdown">
+                <option value="30">30</option>
+                <option value="60">60</option>
+                <option value="90" selected>90</option>
+                <option value="180">180</option>
+                <option vlaue="365">365</option>
+            </select> days
+            <div> Emails (comma delimiter): <textarea id="user-email" name="user-email" rows="14" cols="60"></textarea></div>
+            <button id="fetchBtn">Fetch Now</button>
+        </div>
+        
+        <div id="status"></div>
+
+        <script lang="javascript" src="/xlsx.full.min.js"></script>
+        <script lang="javascript" src="/jquery-3.7.1.slim.min.js"></script>
+        <script lang="javascript" src="/select2.min.js"></script>
+        <script src="popup.js"></script>
+    </body>
+</html>
