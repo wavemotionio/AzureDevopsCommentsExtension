@@ -171,8 +171,10 @@ document.getElementById('fetchBtn').addEventListener('click', function() {
             for (let commentList of commentLists) {
                 for (let thread of commentList.value) {
                     for (let comment of thread.comments) {
+                        console.log(comment);
                         if (userList.includes(comment.author.uniqueName)) {
                             userListObject[comment.author.uniqueName].push({
+                                likes: comment.usersLiked.length,
                                 comment: comment.content,
                                 date: comment.publishedDate
                             });
@@ -187,7 +189,7 @@ document.getElementById('fetchBtn').addEventListener('click', function() {
                 finalReport += `<div>Fetched ${commentArray.length} comments by ${authorName}.</div>`;
 
                 if (commentArray.length > 0) {
-                    let ws = XLSX.utils.json_to_sheet(commentArray, {header: ["date", "comment"]});
+                    let ws = XLSX.utils.json_to_sheet(commentArray, {header: ["date", "comment", "likes"]});
                     let wb = XLSX.utils.book_new();
                     XLSX.utils.book_append_sheet(wb, ws, "Comments");
 
